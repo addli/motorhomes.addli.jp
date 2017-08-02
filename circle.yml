@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:7.10
     branches:
       only:
-        - ${PRODUCTION_BRANCH}
+        - master
     steps:
       - checkout
       - run:
@@ -15,8 +15,9 @@ jobs:
       - run:
           name: pre setup
           command: |
-            apt update && apt install -y pip
-            pip install awscli
+            sudo apt update
+            sudo apt install -y pip
+            sudo pip install awscli
       - run:
           name: deployment
           command: |
