@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - $PRODUCTION_BRANCH
+    steps:
+      - checkout
+      - run:
+          name: pre setup
+          command: |
+            sudo pip install awscli
+      - run:
+          name: deployment
+          command: |
+            aws s3 rm s3://$BUCKET_NAME/* --recursive
+            aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive

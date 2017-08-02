@@ -1,0 +1,6 @@
+{
+  "dependencies": {},
+  "globalDependencies": {
+    "riot": "registry:dt/riot#2.6.0+20170314144845"
+  }
+}

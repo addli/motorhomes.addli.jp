@@ -1,0 +1,34 @@
+{
+  "name": "moterhome.addli.jp",
+  "version": "0.0.1",
+  "description": "This is the code of the motorhome information site for the liberarian.",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/addli/motorhomes.addli.jp.git"
+  },
+  "author": "iq3",
+  "license": "MIT",
+  "homepage": "https://motorhomes.addli.jp",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.4.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-hjson": "^2.0.3",
+    "gulp-riot": "^1.1.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-tslint": "^8.1.1",
+    "gulp-typescript": "^3.1.7",
+    "gulp-uglify": "^2.1.2",
+    "node-sass": "^4.5.3",
+    "rewire": "^2.5.2",
+    "typescript": "^2.3.4",
+    "typescript-simple": "^8.0.0"
+  },
+  "optionalDependencies": {
+    "tslint": "^5.4.2"
+  }
+}
