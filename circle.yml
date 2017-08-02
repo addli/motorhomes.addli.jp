@@ -5,13 +5,17 @@ jobs:
       - image: circleci/node:7.10
     branches:
       only:
-        - $PRODUCTION_BRANCH
+        - ${PRODUCTION_BRANCH}
     steps:
       - checkout
       - run:
+          name: show environments
+          command: |
+            cat /etc/issue
+      - run:
           name: pre setup
           command: |
-            apk add --no-cache py-pip
+            apt update && apt install -y pip
             pip install awscli
       - run:
           name: deployment
