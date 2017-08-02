@@ -1,25 +1,16 @@
-version: 2
-jobs:
-  build:
-    docker: # requires
-      - image: circleci/node:7.10
-    branches:
-      only:
-        - master
-    steps:
-      - checkout
-      - run:
-          name: show environments
-          command: |
-            cat /etc/issue
-      - run:
-          name: pre setup
-          command: |
-            sudo apt update
-            sudo apt install -y pip
-            sudo pip install awscli
-      - run:
-          name: deployment
-          command: |
-            aws s3 rm s3://$BUCKET_NAME/* --recursive
-            aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
+general:
+  branches:
+    ignore:
+      - master
+      - /work\/.*/
+
+dependencies:
+  pre:
+    - sudo pip install awscli
+
+deployment:
+  production:
+    branch: $PRODUCTION_BRANCH
+    commands:
+      - aws s3 rm s3://$BUCKET_NAME/* --recursive
+      - aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
