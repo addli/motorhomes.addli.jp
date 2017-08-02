@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    docker: # requires
+      - image: circleci/node:7.10
     branches:
       only:
         - $PRODUCTION_BRANCH
