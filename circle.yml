@@ -1,15 +1,29 @@
-general:
-  branches:
-    ignore:
-      - /work\/.*/
-
-dependencies:
-  pre:
-    - sudo pip install awscli
-
-deployment:
-  production:
-    branch: $PRODUCTION_BRANCH
-    commands:
-      - aws s3 rm s3://$BUCKET_NAME/* --recursive
-      - aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+    docker: # requires
+      - image: circleci/node:7.10
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - run:
+          name: show environments
+          command: |
+            cat /etc/issue
+      - run:
+          name: Install dependencies
+          working_directory: ./
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python3.4-dev
+            sudo curl -O https://bootstrap.pypa.io/get-pip.py
+            sudo python3.4 get-pip.py
+            sudo pip install awscli --upgrade
+      - run:
+          name: deployment
+          command: |
+            aws s3 rm s3://$BUCKET_NAME/* --recursive
+            aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
