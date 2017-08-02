@@ -11,7 +11,8 @@ jobs:
       - run:
           name: pre setup
           command: |
-            sudo pip install awscli
+            apk add --no-cache py-pip
+            pip install awscli
       - run:
           name: deployment
           command: |
