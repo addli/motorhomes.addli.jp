@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/
+    working_directory: ~/repo
     docker: # requires
       - image: circleci/node:7.10
     branches:
