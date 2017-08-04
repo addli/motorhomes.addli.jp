@@ -1,9 +1,10 @@
 {
-  "name": "moterhome.addli.jp",
+  "name": "motorhome.addli.jp",
   "version": "0.0.1",
   "description": "This is the code of the motorhome information site for the liberarian.",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -17,18 +18,32 @@
     "gulp-clean-css": "^3.4.1",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
-    "gulp-hjson": "^2.0.3",
+    "gulp-exec": "^2.1.3",
+    "gulp-hjson": "^2.4.3",
     "gulp-riot": "^1.1.1",
+    "gulp-rollup": "^2.14.0",
     "gulp-sass": "^3.1.0",
     "gulp-tslint": "^8.1.1",
     "gulp-typescript": "^3.1.7",
     "gulp-uglify": "^2.1.2",
     "node-sass": "^4.5.3",
     "rewire": "^2.5.2",
+    "riot": "^3.6.1",
+    "rollup": "^0.45.2",
+    "rollup-plugin-commonjs": "^8.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-riot": "^1.1.0",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-uglify": "^2.0.1",
     "typescript": "^2.3.4",
     "typescript-simple": "^8.0.0"
   },
   "optionalDependencies": {
     "tslint": "^5.4.2"
+  },
+  "dependencies": {
+    "googlemap": "^1.0.4",
+    "moment": "^2.18.1",
+    "riot": "^3.6.1"
   }
 }
