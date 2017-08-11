@@ -1,0 +1,387 @@
+@import "variables/grid";
+@import "variables/container";
+@import "variables/options";
+
+@import "mixins/breakpoints";
+
+//@import "mixins/clearfix";
+
+// ============================================================================
+// MIXIN
+// ============================================================================
+
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+@mixin make-grid-columns($columns: $grid-columns, $gutters: $grid-gutter-widths, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    min-height: 1px; // Prevent columns from collapsing when empty
+
+    @include make-gutters($gutters);
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
+        @extend %grid-column;
+      }
+    }
+    .col#{$infix} {
+      @extend %grid-column;
+    }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      .col#{$infix} {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+      }
+      .col#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+      }
+
+      @for $i from 1 through $columns {
+        .col#{$infix}-#{$i} {
+          @include make-col($i, $columns);
+        }
+      }
+
+      @each $modifier in (pull, push) {
+        @for $i from 0 through $columns {
+          .#{$modifier}#{$infix}-#{$i} {
+            @include make-col-modifier($modifier, $i, $columns)
+          }
+        }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      @for $i from 0 through ($columns - 1) {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-xs-0
+          .offset#{$infix}-#{$i} {
+            @include make-col-modifier(offset, $i, $columns)
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-container($gutters: $grid-gutter-widths) {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
+  @each $breakpoint in map-keys($gutters) {
+    @include media-breakpoint-up($breakpoint) {
+      $gutter: map-get($gutters, $breakpoint);
+      padding-right: ($gutter / 2);
+      padding-left:  ($gutter / 2);
+    }
+  }
+}
+
+
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      width: $container-max-width;
+      max-width: 100%;
+    }
+  }
+}
+
+@mixin make-gutters($gutters: $grid-gutter-widths) {
+  @each $breakpoint in map-keys($gutters) {
+    @include media-breakpoint-up($breakpoint) {
+      $gutter: map-get($gutters, $breakpoint);
+      padding-right: ($gutter / 2);
+      padding-left:  ($gutter / 2);
+    }
+  }
+}
+
+@mixin make-row($gutters: $grid-gutter-widths) {
+  display: flex;
+  flex-wrap: wrap;
+
+  @each $breakpoint in map-keys($gutters) {
+    @include media-breakpoint-up($breakpoint) {
+      $gutter: map-get($gutters, $breakpoint);
+      margin-right: ($gutter / -2);
+      margin-left:  ($gutter / -2);
+    }
+  }
+}
+
+@mixin make-col-ready($gutters: $grid-gutter-widths) {
+  position: relative;
+  // Prevent columns from becoming too narrow when at smaller grid tiers by
+  // always setting `width: 100%;`. This works because we use `flex` values
+  // later on to override this initial width.
+  width: 100%;
+  min-height: 1px; // Prevent collapsing
+
+  @each $breakpoint in map-keys($gutters) {
+    @include media-breakpoint-up($breakpoint) {
+      $gutter: map-get($gutters, $breakpoint);
+      padding-right: ($gutter / 2);
+      padding-left:  ($gutter / 2);
+    }
+  }
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  // width: percentage($size / $columns);
+  // Add a `max-width` to ensure content within each column does not blow out
+  // the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+  // do not appear to require this.
+  max-width: percentage($size / $columns);
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  margin-left: percentage($size / $columns);
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+  left: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+  right: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-modifier($type, $size, $columns) {
+  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+  @if $type == push {
+    @include make-col-push($size, $columns);
+  } @else if $type == pull {
+    @include make-col-pull($size, $columns);
+  } @else if $type == offset {
+    @include make-col-offset($size, $columns);
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// @mixin container-fixed($gutter: $grid-gutter-width) {
+//   margin-right: auto;
+//   margin-left: auto;
+//   padding-left:  floor(($gutter / 2));
+//   padding-right: ceil(($gutter / 2));
+//   //@include clearfix; // clearfix の意味が調べてもピンとこない。。。下位互換性維持？しばらく切って見てその効果を体感することにする
+// }
+
+// @mixin make-row($gutter: $grid-gutter-width) {
+//   .row {
+//     margin-left:  ceil(($gutter / -2));
+//     margin-right: floor(($gutter / -2));
+//   //@include clearfix;
+//   }
+// }
+
+// @mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+//   @for $i from (1 + 1) through $grid-columns {
+//     $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+//   }
+//   #{$list} {
+//     position: relative;
+//     // Prevent columns from collapsing when empty
+//     min-height: 1px;
+//     // Inner gutter via padding
+//     padding-left:  ceil(($grid-gutter-width / 2));
+//     padding-right: floor(($grid-gutter-width / 2));
+//   }
+// }
+
+// @mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+//   @for $i from (1 + 1) through $grid-columns {
+//     $list: "#{$list}, .col-#{$class}-#{$i}";
+//   }
+//   #{$list} {
+//     float: left;
+//   }
+// }
+
+// @mixin calc-grid-column($index, $class, $type) {
+//   @if ($type == width) and ($index > 0) {
+//     .col-#{$class}-#{$index} {
+//       width: percentage(($index / $grid-columns));
+//     }
+//   }
+//   @if ($type == push) and ($index > 0) {
+//     .col-#{$class}-push-#{$index} {
+//       left: percentage(($index / $grid-columns));
+//     }
+//   }
+//   @if ($type == push) and ($index == 0) {
+//     .col-#{$class}-push-0 {
+//       left: auto;
+//     }
+//   }
+//   @if ($type == pull) and ($index > 0) {
+//     .col-#{$class}-pull-#{$index} {
+//       right: percentage(($index / $grid-columns));
+//     }
+//   }
+//   @if ($type == pull) and ($index == 0) {
+//     .col-#{$class}-pull-0 {
+//       right: auto;
+//     }
+//   }
+//   @if ($type == offset) {
+//     .col-#{$class}-offset-#{$index} {
+//       margin-left: percentage(($index / $grid-columns));
+//     }
+//   }
+// }
+
+// @mixin loop-grid-columns($columns, $class, $type) {
+//   @for $i from 0 through $columns {
+//     @include calc-grid-column($i, $class, $type);
+//   }
+// }
+
+// @mixin make-grid($class) {
+//   @include float-grid-columns($class);
+//   @include loop-grid-columns($grid-columns, $class, width);
+//   @include loop-grid-columns($grid-columns, $class, pull);
+//   @include loop-grid-columns($grid-columns, $class, push);
+//   @include loop-grid-columns($grid-columns, $class, offset);
+// }
+
+// @mixin make-container($width) {
+//     .container { width: $width; }
+// }
+
+// @mixin box-sizing($boxmodel) {
+//   -webkit-box-sizing: $boxmodel;
+//      -moz-box-sizing: $boxmodel;
+//           box-sizing: $boxmodel;
+// }
+
+
+// // ============================================================================
+// // CLASSES
+// // ============================================================================
+
+// // スキャホールド(足場材、足場固め、Foundationよりちょっと高レイヤーな共通処理) 
+// // padding と border の幅を要素の幅と高さに含める.
+// * {
+//   @include box-sizing(border-box);
+// }
+// *:before,
+// *:after {
+//   @include box-sizing(border-box);
+// }
+
+// // media制約があるコンテナ
+// .container {
+//   @include container-fixed;
+// }
+
+// // media制約がないコンテナ
+// .container-fluid {
+//   @include container-fixed;
+// }
+
+// // 行
+// @include make-row;
+
+// // grid共通のスタイル
+// @include make-grid-columns;
+
+// // extra small のみ 適用するスタイル、, media制約がない
+// @include make-grid(xs);
+
+// // small grid のみ 適用するスタイル
+// @media (min-width: $screen-sm-min) {
+//   @include make-container($container-sm);
+//   @include make-grid(sm);
+// }
+
+// // medium grid のみ 適用するスタイル
+// @media (min-width: $screen-md-min) {
+//   @include make-container($container-md);
+//   @include make-grid(md);
+// }
+
+// // large grid のみ 適用するスタイル
+// @media (min-width: $screen-lg-min) {
+//   @include make-container($container-lg);
+//   @include make-grid(lg);
+// }
+
+
+
+// ============================================================================
+// CLASSES
+// ============================================================================
+
+// Set the container width, and override it for fixed navbars in media queries.
+
+@if $enable-grid-classes {
+  .container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+}
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but without any defined
+// width for fluid, full width layouts.
+
+@if $enable-grid-classes {
+  .container-fluid {
+    @include make-container();
+  }
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+
+@if $enable-grid-classes {
+  .row {
+    @include make-row();
+  }
+
+  // Remove the negative margin from default .row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+  @include make-grid-columns();
+}

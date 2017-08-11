@@ -1,0 +1,8 @@
+$border-radius-base:        4px !default;
+
+$font-size-base:          14px !default;
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:        1.428571429 !default; // 20/14
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px

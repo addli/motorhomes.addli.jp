@@ -103,7 +103,7 @@ function exceptionLog (error) {
 
 var sass = require('gulp-sass')
 gulp.task('styles', function () {
-  return gulp.src('./styles/limone/limone.scss')
+  return gulp.src('./styles/styles.scss')
     .pipe(sass.sync({
             outputStyle: 'expanded'
         }).on('error', sass.logError))

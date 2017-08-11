@@ -1,0 +1,70 @@
+$tab-bar-height: 50px;
+
+// ============================================================================
+// CLASSES
+// ============================================================================
+
+footer{
+    position:   fixed;
+    width:      100%;
+    height:     $tab-bar-height;
+    bottom:     0;
+    z-index:    2;
+}
+
+.tab-bar{
+    width:      100%;
+    height:     100%;
+    background-color:   #f8f8f8;
+    border: 1px solid transparent;
+    border-color:       #e7e7e7;
+    border-width:  1px 0 0;
+    .items{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        display: table;
+        table-layout: fixed;
+        border-collapse: separate;
+        a{
+            position: relative;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            display: table-cell;
+            float: none;
+            width: 1%;
+            padding: 6px 12px;
+            text-align: center;
+            white-space: nowrap;
+            .glyphicon{
+                font-size: 26px;
+                text-shadow: 0 -1px 0 #9f9f9f;
+                color: #333;
+            }
+            label{
+                position: absolute;
+                top: 35px;
+                left: 5px;
+                right: 5px;
+                font-size: 8.5px;
+                text-align: center;
+                text-decoration: unset;
+                color: #333;
+                cursor: pointer;
+            }
+            &.active{
+                .glyphicon{
+                    font-size: 26px;
+                    text-shadow: 0 -1px 0 #2196F3;
+                    color: #2196F3;
+                }
+            }
+        }
+    }
+}
+
+.footered{
+    position: fixed;
+    bottom: $tab-bar-height;
+}

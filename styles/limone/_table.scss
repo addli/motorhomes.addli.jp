@@ -1,0 +1,33 @@
+table{
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+.table{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+
+    th,
+    td{
+        padding: 0.75rem;
+        line-height: 1.5;
+        vertical-align: top;
+        border-top: 1px solid #ddd
+    }
+
+    thead{
+        tr{
+            th{
+                font-weight: 600;
+                //text-transform: uppercase;
+                border-bottom-width: 1px;
+                border-top: none;
+                vertical-align: bottom;
+                //border-bottom: 2px solid #ddd;
+                padding: 0.55rem;
+            }
+        }
+    }
+}

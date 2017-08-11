@@ -1,5 +1,5 @@
 {
-  "name": "motorhome.addli.jp",
+  "name": "motorhomes.addli.jp",
   "version": "0.0.1",
   "description": "This is the code of the motorhome information site for the liberarian.",
   "scripts": {
@@ -42,8 +42,10 @@
     "tslint": "^5.4.2"
   },
   "dependencies": {
-    "googlemap": "^1.0.4",
+    "fetch-polyfill": "^0.8.2",
+    "jquery": "^3.2.1",
     "moment": "^2.18.1",
-    "riot": "^3.6.1"
+    "riot": "^3.6.1",
+    "riot-tab": "^0.2.1"
   }
 }

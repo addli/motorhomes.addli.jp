@@ -28,8 +28,8 @@ export default {
         }
     }),
     nodeResolve({ jsnext: true }),
-    commonjs(),
     typescript(),
+    commonjs(),
     //uglify()
   ],
   format: 'iife'

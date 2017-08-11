@@ -1,10 +1,9 @@
+import './viewController/rootviewcontroller.tag'
+
 <application>
-    <h1>Hello world</h1>
-
+<rootviewcontroller />
 <script>
-
 import moment from 'moment'
 moment.locale('jp')
-
 </script>
 </application>
