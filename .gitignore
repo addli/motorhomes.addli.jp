@@ -3,3 +3,4 @@ node_modules
 docs/assets/json
 docs/assets/js
 docs/assets/styles
+hjson/settings.hjson

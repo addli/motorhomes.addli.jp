@@ -54,7 +54,7 @@ env('.env');
 gulp.task('make-settings', function() {
   return gulp
           .src(['./settings.hjson'])
-          .pipe(replace('%%GOOGLE_API_KEY%%', process.env.GOOGLE_API_KEY))
+          .pipe(replace('%%GOOGLE_MAP_API_KEY%%', process.env.GOOGLE_MAP_API_KEY))
           .pipe(replace('%%GOOGLE_ANALYTICS_ID%%', process.env.GOOGLE_ANALYTICS_ID))
           .pipe(gulp.dest('./hjson/'));
 });

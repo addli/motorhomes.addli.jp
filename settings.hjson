@@ -8,7 +8,7 @@
         "url"      : "https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry",
 
         // API Key
-        "apiKey"   : "%%GOOGLE_API_KEY%%",
+        "apiKey"   : "%%GOOGLE_MAP_API_KEY%%",
 
         // Default Zoom
         "zoom" : 19,
