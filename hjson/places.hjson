@@ -1,0 +1,29 @@
+[
+    {
+        "title" : "株式会社デルタリンク(アドリアモービルジャパン)",
+        "type" : "builder",
+        "postalCode" : "710-0026",
+        "address" : "岡山県倉敷市加須山 101-1",
+        "tel" : "086-429-3337",
+        "url" : "http://www.delta-link.co.jp",
+        "location" : { "latitude" :34.592374, "longitude" :133.801351 }
+    },
+    {
+        "title" : "株式会社ボナンザ",
+        "type" : "builder",
+        "postalCode" : "208-0021",
+        "address" : "東京都武蔵村山市三ツ藤3-12-1",
+        "tel" : "042-520-1866",
+        "url" : "https://www.bonanza.co.jp",
+        "location" : { "latitude" :35.757613, "longitude" :139.368201 }
+    },
+    {
+        "title" : "東和モータース(デスレフ)",
+        "type" : "builder",
+        "postalCode" : "208-0021",
+        "address" : "東京都杉並区上高井戸1-21-18",
+        "tel" : "03-3303-1146",
+        "url" : "http://towa-motors.com",
+        "location" : { "latitude" :35.672365, "longitude" :139.609808 }
+    }
+]

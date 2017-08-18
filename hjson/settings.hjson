@@ -1,0 +1,24 @@
+{
+    // document.title
+    "title" : "motorhomes",
+
+    // Settings for Google Map
+    "map" : {
+        // Path of GoogleMap API
+        "url"      : "https://maps.googleapis.com/maps/api/js?v=3&libraries=geometry",
+
+        // API Key
+        "apiKey"   : "AIzaSyAQfxPJiounkhOjODEO5ZieffeBv6yft2Q",
+
+        // Default Zoom
+        "zoom" : 19,
+
+        // Default Center
+        "center" : { latitude : 35.681167, longitude : 139.767052 }
+    }
+
+    // Settings for Google Analytics
+    "analytics" : {
+        "trackingID" : "UA-104636127-1"
+    }
+}

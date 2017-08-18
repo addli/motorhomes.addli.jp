@@ -1,10 +1,10 @@
-import riot from 'riot'
+import riot from "riot"
 
 export default class RiotController{
     constructor(){
     }
 
     mount = () => {
-        riot.mount('application')
+        riot.mount("application")
     }
 }

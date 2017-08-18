@@ -1,9 +1,5 @@
-import './viewController/rootviewcontroller.tag'
+import "./viewController/RootViewController.tag"
 
 <application>
 <rootviewcontroller />
-<script>
-import moment from 'moment'
-moment.locale('jp')
-</script>
 </application>
