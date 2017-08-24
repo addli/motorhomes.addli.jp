@@ -26,13 +26,28 @@ jobs:
           name: Setup env file
           command: |
             echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\nGOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
+      - restore_cache:
+          name: Restoring Cache node_modules
+          keys:
+            - node-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "package.json" }}
+            - node-{{ .Environment.COMMON_CACHE_KEY }}-
+      - run:
+          name: Setup npm
+          command: |
+            npm install
+            sudo npm install -g gulp
+            npm rebuild node-sass --force
       - run:
           name: Build project
           command: |
-            npm install
             gulp
+      - save_cache:
+          name: Saving Cache node_modules
+          key: node-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "package.json" }}
+          paths:
+            - "./node_modules"
       - run:
-          name: deployment
+          name: Deployment
           command: |
             aws s3 rm s3://$BUCKET_NAME/* --recursive
             aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
