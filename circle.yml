@@ -29,8 +29,8 @@ jobs:
       - restore_cache:
           name: Restoring Cache node_modules
           keys:
-            - node-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "package.json" }}
-            - node-{{ .Environment.COMMON_CACHE_KEY }}-
+            - node-{{ checksum "package.json" }}
+            - node-
       - run:
           name: Setup npm
           command: |
@@ -39,7 +39,7 @@ jobs:
             npm rebuild node-sass --force
       - save_cache:
           name: Saving Cache node_modules
-          key: node-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "package.json" }}
+          key: node-{{ checksum "package.json" }}
           paths:
             - "./node_modules"
       - run:

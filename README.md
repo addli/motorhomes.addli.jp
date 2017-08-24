@@ -42,17 +42,19 @@ gulp
 ```
 or Shortcut in VSCode, Command + Shift + B.
 
-## Appendix: Web technology equivalent to iOS Framework
+## Appendix: Web technology substitutable to iOS Framework
 
 iOS Frameworks| Web
 :---|:--- 
-UIViewController | riot.js
+UIAppDelegate & UIViewController | riot.js
 NSNotificationCenter | riot-observable
 UINavigationController | riot-nav
 UITabBarController | riot-tab
 NSDate & NSDateFormatter | moment.js
 NSLocalizedString | i18next.js
-Xcode & CocoaPods | gulp & rollup
+Xcode | VSCode
+Xcode ToolChain | gulp & rollup
+CocoaPods | npm
 Auto Layout | CSS
 Universal Link | riot-route
 
