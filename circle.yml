@@ -23,6 +23,14 @@ jobs:
             sudo python3.4 get-pip.py
             sudo pip install awscli --upgrade
       - run:
+          name: Setup env file
+          command: |
+            echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\nGOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
+      - run:
+          name: Build project
+          command: |
+            gulp
+      - run:
           name: deployment
           command: |
             aws s3 rm s3://$BUCKET_NAME/* --recursive
