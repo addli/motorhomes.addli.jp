@@ -37,15 +37,15 @@ jobs:
             npm install
             sudo npm install -g gulp
             npm rebuild node-sass --force
-      - run:
-          name: Build project
-          command: |
-            gulp
       - save_cache:
           name: Saving Cache node_modules
           key: node-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "package.json" }}
           paths:
             - "./node_modules"
+      - run:
+          name: Build project
+          command: |
+            gulp
       - run:
           name: Deployment
           command: |
