@@ -47,6 +47,10 @@ jobs:
           command: |
             gulp
       - run:
+          name: Unit test
+          command: |
+            npm run test
+      - run:
           name: Deployment
           command: |
             aws s3 rm s3://$BUCKET_NAME/* --recursive

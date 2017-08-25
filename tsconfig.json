@@ -4,6 +4,8 @@
         "module": "commonjs",
         "sourceMap": true,
         "removeComments": false,
-        "noEmitOnError" : false
+        "noEmitOnError" : false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     }
 }

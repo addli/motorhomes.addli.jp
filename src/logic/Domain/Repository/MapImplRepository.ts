@@ -4,16 +4,11 @@ import Settings from "../../Foundation/Settings"
 import Place from "../Entity/Place"
 import Location from "../Entity/Location"
 
-export interface MapRepository{
-    load : (handler:(view:HTMLElement,error?:Error) => void ) => void
-    isLoaded : () => boolean
-    refresh : () => void
-    setMarkers: ( locations:Location[] ) => void
-    setMarkerClickHandler : ( hanlder:( location:Location ) => void ) => void
-    setInfoWindowContent : (content:HTMLElement) => void
-    fitBounds : () => void
-}
+import { injectable } from "inversify"
+import MapRepository from "./interface/MapRepository"
+import "reflect-metadata"
 
+@injectable()
 export default class MapImplRepository implements MapRepository{
 
     private view?:HTMLElement

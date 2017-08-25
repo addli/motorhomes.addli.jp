@@ -6,10 +6,15 @@ import "../view/InfoWindowView.tag"
 <infowindowview />
 
 <script>
-import MapService from "../../logic/Service/MapService"
+import { DIContainer }  from "../../logic/Foundation/inversify.config"
+import InjectionType    from "../../logic/Foundation/InjectionType"
+import MapService       from "../../logic/Service/MapService"
 
 var self = this
-var service = new MapService();  // rename export default class name 
+var service = new MapService( 
+    DIContainer.get(InjectionType.MapRepository),
+    DIContainer.get(InjectionType.PlaceRepository),
+ );
 
 // riot lifecycle
 // ──────────────────

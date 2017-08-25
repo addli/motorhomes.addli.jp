@@ -3,7 +3,8 @@
   "version": "0.9.0",
   "description": "This is the code of the motorhome information site for the liberarian.",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "mocha -r ts-node/register test/tests/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -13,11 +14,15 @@
   "license": "MIT",
   "homepage": "https://motorhomes.addli.jp",
   "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.42",
+    "chai": "^4.1.1",
     "gulp": "^3.9.1",
     "gulp-connect": "^5.0.0",
     "gulp-hjson": "^2.4.3",
     "gulp-replace": "^0.6.1",
     "gulp-sass": "^3.1.0",
+    "mocha": "^3.5.0",
     "node-env-file": "^0.1.8",
     "node-sass": "^4.5.3",
     "riot": "^3.6.1",
@@ -27,8 +32,10 @@
     "rollup-plugin-riot": "^1.1.0",
     "rollup-plugin-typescript": "^0.8.1",
     "rollup-plugin-uglify": "^2.0.1",
+    "ts-node": "^3.3.0",
     "typescript": "^2.3.4",
-    "typescript-simple": "^8.0.0"
+    "typescript-simple": "^8.0.0",
+    "typings": "^2.1.1"
   },
   "optionalDependencies": {
     "tslint": "^5.4.2"
@@ -36,9 +43,11 @@
   "dependencies": {
     "fetch-polyfill": "^0.8.2",
     "i18next": "^8.4.3",
+    "inversify": "^4.3.0",
     "jquery": "^3.2.1",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
+    "reflect-metadata": "^0.1.10",
     "riot": "^3.6.1",
     "riot-nav": "^0.2.3",
     "riot-route": "^3.1.2",

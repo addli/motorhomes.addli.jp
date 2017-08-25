@@ -1,13 +1,18 @@
-import MapRepository from "../Domain/Repository/MapRepository"
-import PlaceRepository from "../Domain/Repository/PlaceRepository"
+import MapRepository from "../Domain/Repository/interface/MapRepository"
+import PlaceRepository from "../Domain/Repository/interface/PlaceRepository"
 
 import Place from "../Domain/Entity/Place"
 import Location from "../Domain/Entity/Location"
 
 export default class MapService{
 
-    private mapRepo : MapRepository = new MapRepository()
-    private placeRepo : PlaceRepository = new PlaceRepository()
+    private mapRepo:MapRepository;
+    private placeRepo:PlaceRepository;
+
+    constructor(mapRepo: MapRepository, placeRepo: PlaceRepository){
+        this.mapRepo = mapRepo
+        this.placeRepo = placeRepo
+    }
 
     public load = ( handler:( view:HTMLElement,error?:Error ) => void) => {
         this.mapRepo.load( handler )

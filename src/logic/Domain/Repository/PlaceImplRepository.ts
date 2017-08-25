@@ -1,12 +1,12 @@
 import Place from "../Entity/Place"
 import Location from "../Entity/Location"
 
-export interface PlaceRepository{
+import { injectable } from "inversify"
 
-    loadPlace : ( handler:(places:Place[],error?:Error) => void ) => void
+import PlaceRepository from "./interface/PlaceRepository"
+import "reflect-metadata"
 
-}
-
+@injectable()
 export default class PlaseImplRepository implements PlaceRepository{
 
     public loadPlace = ( handler:(places:Place[],error?:Error) => void ) => {
