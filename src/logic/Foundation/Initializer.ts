@@ -5,6 +5,9 @@ import moment from "moment"
 import Settings from "./Settings"    
 import Analytics from "./Analytics"
 
+// import riot tags
+import "../../views/application.tag"
+
 export default class Initializer{
 
     constructor(){

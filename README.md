@@ -15,7 +15,7 @@ I am strongly influenced by iOS development.
 * Hjson is adopted so that you can write comments directly in the settings. My favorite configuration file format. json < yaml < hjson.
 
 ### Application implement
-* It is a complete Single page Application.
+* It is a complete Single Page Application.
 * Using OSS riot-tab, riot-nav of iq3AddLi. Implemented view management with screen transitions.
 * Internationalized by i18next. Language automatically switches according to the language setting of the browser.
 * Rendered markdown using marked.js.

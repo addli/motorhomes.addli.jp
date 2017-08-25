@@ -5,35 +5,12 @@ import Place from "../Entity/Place"
 import Location from "../Entity/Location"
 
 export interface MapRepository{
-    /**
-     * 地図の読み込み開始
-     * @param handler 結果ハンドラ。非同期で実行される。ただしviewがキャッシュ済みの時は同期的に実行される。
-     */
     load : (handler:(view:HTMLElement,error?:Error) => void ) => void
-
     isLoaded : () => boolean
-
-    /**
-     * 再描画
-     */
     refresh : () => void
-
-    //
-    // Marker
-    //
     setMarkers: ( locations:Location[] ) => void
-
     setMarkerClickHandler : ( hanlder:( location:Location ) => void ) => void
-
-    // 
-    // InfoWindow
-    //
-    /**
-     * InfoWindow上に表示するHTMLを渡す
-     * @param content InfoWindow上に表示するHTML
-     */
     setInfoWindowContent : (content:HTMLElement) => void
-
     fitBounds : () => void
 }
 
@@ -109,10 +86,6 @@ export default class MapImplRepository implements MapRepository{
 
     private externalMarkerClickHandler?:( marker:Location ) => void
 
-    /**
-     * マーカークリックハンドラを設定
-     * notice: ハンドラが実行された後にInfoWindowを開く処理が実行される
-     */
     public setMarkerClickHandler = ( hanlder:( location:Location ) => void ) => {
         this.externalMarkerClickHandler = hanlder
     }

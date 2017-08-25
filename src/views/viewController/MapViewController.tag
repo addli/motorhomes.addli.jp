@@ -40,10 +40,7 @@ self.loadMap = function(){
         }
         // Display map on view
         document.getElementById("motorhome-map").appendChild(view)
-
         service.setInfoWindowContent( self.tags.infowindowview.domContent() )
-
-        // モーターホーム業者の情報を問い合わせる
         reloadPlace()
     })
 }

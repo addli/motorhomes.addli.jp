@@ -1,15 +1,7 @@
 export default class Analytics{
 
-    /**
-     * Analytics のインスタンス
-     */
     private static _instance:Analytics
 
-    // private _analytics:any
-
-    /**
-     * new でのインスタンス作成を抑止している
-     */
     constructor() {
         if(Analytics._instance){
             throw new Error("must use the shared().")
@@ -28,10 +20,6 @@ export default class Analytics{
         })( window,document,"script","https://www.google-analytics.com/analytics.js","ga")
     }
 
-    /**
-     * Analyticsのシングルトンインスタンスを返す
-     * @return Analyticsのインスタンス
-     */
     public static shared = () => {
         if( Analytics._instance === undefined ) {
             Analytics._instance = new Analytics()
@@ -39,18 +27,10 @@ export default class Analytics{
         return Analytics._instance;
     }
 
-    /**
-     * アナリティックスの開始
-     * @param title 送信するイベントのタイトル
-     */
     public start = ( trackingID:string ) => {
         ga("create", trackingID, "auto")
     }
 
-    /**
-     * ログを送信する
-     * @param title 送信するイベントのタイトル
-     */
     public send = ( title:string ) => {
         ga("send", title )
     }

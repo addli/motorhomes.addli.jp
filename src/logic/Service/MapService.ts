@@ -8,10 +8,7 @@ export default class MapService{
 
     private mapRepo : MapRepository = new MapRepository()
     private placeRepo : PlaceRepository = new PlaceRepository()
-    /**
-    * 地図の読み込みを指示する
-    * @param handler 結果ハンドラ。読み込みが成功した場合地図機能を持つ<div>エレメントが渡される
-    */
+
     public load = ( handler:( view:HTMLElement,error?:Error ) => void) => {
         this.mapRepo.load( handler )
     }
@@ -54,7 +51,4 @@ export default class MapService{
     public refresh = () => {
         this.mapRepo.refresh()
     }
-    // public openInfoWindow = ( location:Location ) => {
-    //     this.mapRepo.openInfoWindow( location )
-    // }
 }

@@ -1,5 +1,5 @@
 /**
- * アプリケーション設定
+ * Application Settings Container
  */
 export default class Settings{
 
