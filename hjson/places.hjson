@@ -25,5 +25,14 @@
         "tel" : "03-3303-1146",
         "url" : "http://towa-motors.com",
         "location" : { "latitude" :35.672365, "longitude" :139.609808 }
+    },
+    {
+        "title" : "ナッツRV北九州店(本社)",
+        "type" : "builder",
+        "postalCode" : "811-4342",
+        "address" : "福岡県遠賀郡遠賀町大字尾崎1704-3",
+        "tel" : "093-293-8888",
+        "url" : "http://nutsrv.co.jp",
+        "location" : { "latitude" :33.849898, "longitude" :130.647218 }
     }
 ]

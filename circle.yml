@@ -25,7 +25,8 @@ jobs:
       - run:
           name: Setup env file
           command: |
-            echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\nGOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
+            echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\n" \
+                 "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
       - restore_cache:
           name: Restoring Cache node_modules
           keys:

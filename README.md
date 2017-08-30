@@ -9,7 +9,7 @@ I am strongly influenced by iOS development.
 ### Project structure
 * I bundled by rollup. I solved dependencies between libraries.
 * Install libraries for npm. Looking at package.json makes it possible to understand dependent libraries. This was also conscious of native applications.
-* I pulled out only grid system from bootstrap.We are assembling the style required by SPA from scratch.
+* I pulled out only grid system from bootstrap. We are assembling the style required by SPA from scratch.
 * Logic is written in TypeScript.
   However, warnings are not output due to the [problem of rollup-plugin-typescript](https://github.com/rollup/rollup-plugin-typescript/issues/43). The benefits of adopting TypeScript have partially disappeared. Respond as soon as possible.
 * Hjson is adopted so that you can write comments directly in the settings. My favorite configuration file format. json < yaml < hjson.
@@ -46,7 +46,8 @@ or Shortcut in VSCode, Command + Shift + B.
 
 iOS Frameworks| Web
 :---|:--- 
-UIAppDelegate & UIViewController | riot.js
+UIAppDelegate & UIViewController | riot
+Interface Builder(.xib) | riot .tag file 
 NSNotificationCenter | riot-observable
 UINavigationController | riot-nav
 UITabBarController | riot-tab
