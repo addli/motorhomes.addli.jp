@@ -22,7 +22,7 @@ self.on("mount", function(){
 
     var lang = ((window.navigator.languages && window.navigator.languages[0]) ||
             window.navigator.language).substr(0,2) == "ja" ? "ja" : "en";
-    fetch("assets/markdown/" + lang + "/about-this-app.md")
+    fetch("assets/markdown/" + lang + "/" + self.opts.file )
     .then( (res) => { return res.text() })
     .then( (text) => {
         div.innerHTML = marked(text);

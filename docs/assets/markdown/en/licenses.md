@@ -1,6 +1,6 @@
 # Acknowledgments
 
-This application uses the following open source. I appreciate these great cooperation.
+A motorhomes.addli.jp uses the following open source. I appreciate these great cooperation.
 
 * [fetch-polyfill](https://github.com/undoZen/fetch/blob/master/LICENSE)
 * [i18next](https://github.com/i18next/i18next/blob/master/LICENSE)

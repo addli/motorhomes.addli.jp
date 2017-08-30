@@ -1,5 +1,4 @@
 import "./about/MarkedViewController.tag"
-import "./about/LicenseViewController.tag"
 
 <aboutviewcontroller>
 
@@ -22,13 +21,10 @@ var self = this
 // ui action
 // ──────────────────
 self.onClickTermButton = function(){
-    self.opts.nav.push("markedviewcontroller")
-}
-self.onClickCorpButton = function(){
-    self.opts.nav.push("markedviewcontroller")
+    self.opts.nav.push("markedviewcontroller", { "file" : "about-this-app.md" })
 }
 self.onClickLicenseButton = function(){
-    self.opts.nav.push("licenseviewcontroller")
+    self.opts.nav.push("markedviewcontroller", { "file" : "licenses.md" })
 } 
 
 self.localize = function( key ){
