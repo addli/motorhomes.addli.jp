@@ -21,7 +21,7 @@
     "gulp-connect": "^5.0.0",
     "gulp-hjson": "^2.4.3",
     "gulp-replace": "^0.6.1",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "mocha": "^3.5.0",
     "node-env-file": "^0.1.8",
     "node-sass": "^4.5.3",

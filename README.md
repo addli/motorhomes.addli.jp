@@ -29,14 +29,32 @@ Someday I'd like to make a nice motorhome I saw at Pintarest. Based on TOYOTA Qu
 
 ## How to build this project
 
-First, you need to put the following information in a file called .env.
+### 1. Install brew
+Please see [here](https://brew.sh)
+
+### 2. Install npm
+```
+brew install npm
+```
+
+### 3. Install gulp
+```
+npm install -g gulp
+npm install
+```
+
+### 4. Create .env
+First, create a file named .env. 
+```
+vi .env
+```
+Please provide the following information.
 ```
 GOOGLE_MAP_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 GOOGLE_ANALYTICS_ID=UA-XXXXXXXXXX-X
 ```
 
-Please prepare .env and build the project.
-
+### 5. Build package
 ```
 gulp
 ```
