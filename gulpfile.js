@@ -16,7 +16,7 @@ gulp.task('buildjs', function (cb) {
 })
 
 // ━━━━━━━━━━━━━━━━━━━━━━
-// Transepile Sassy CSS
+// Transpile Sassy CSS
 // ━━━━━━━━━━━━━━━━━━━━━━
 function exceptionLog (error) {
   console.log(error.toString())
