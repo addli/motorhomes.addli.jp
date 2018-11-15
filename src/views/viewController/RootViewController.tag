@@ -13,9 +13,12 @@ import "../view/TabBar.tag"
 <div class="headered footered" style="width: 100%;">
     <tabbarcontroller tabs={ [
         { tagName : "mapviewcontroller" }, 
-        { tagName : "navigationcontroller", opts : {
+        {
+          tagName : "navigationcontroller",
+          opts : {
             root : "aboutviewcontroller" 
-        } }
+          }
+        }
     ] } />
 </div>
 
