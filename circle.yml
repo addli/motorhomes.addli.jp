@@ -1,32 +1,15 @@
 version: 2
 jobs:
-  build:
+  npm_install:
     working_directory: ~/repo
     docker: # requires
       - image: circleci/node:7.10
-    branches:
-      only:
-        - master
     steps:
       - checkout
       - run:
           name: show environments
           command: |
             cat /etc/issue
-      - run:
-          name: Install dependencies
-          working_directory: ./
-          command: |
-            sudo apt-get -y -qq update
-            sudo apt-get -y -qq install python3.4-dev
-            sudo curl -O https://bootstrap.pypa.io/get-pip.py
-            sudo python3.4 get-pip.py
-            sudo pip install awscli --upgrade
-      - run:
-          name: Setup env file
-          command: |
-            echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\n" \
-                 "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
       - restore_cache:
           name: Restoring Cache node_modules
           keys:
@@ -43,6 +26,21 @@ jobs:
           key: node-{{ checksum "package.json" }}
           paths:
             - "./node_modules"
+  build_and_test:
+    working_directory: ~/repo
+    docker: # requires
+      - image: circleci/node:7.10
+    steps:
+      - restore_cache:
+          name: Restoring Cache node_modules
+          keys:
+            - node-{{ checksum "package.json" }}
+            - node-
+      - run:
+          name: Setup env file
+          command: |
+            echo "GOOGLE_MAP_API_KEY=$GOOGLE_MAP_API_KEY\n" \
+                 "GOOGLE_ANALYTICS_ID=$GOOGLE_ANALYTICS_ID" > .env
       - run:
           name: Build project
           command: |
@@ -51,8 +49,45 @@ jobs:
           name: Unit test
           command: |
             npm run test
+      - save_cache:
+          name: Saving Cache Docs
+          key: docs_cache
+          paths:
+            - "./docs"
+  deploy:
+    working_directory: ~/repo
+    docker: # requires
+      - image: circleci/node:7.10
+    steps:
+      - restore_cache:
+          name: Restoring Cache Docs
+          keys:
+            - docs_cache
+      - run:
+          name: Install aws-cli
+          working_directory: ./
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y -qq install python3.4-dev
+            sudo curl -O https://bootstrap.pypa.io/get-pip.py
+            sudo python3.4 get-pip.py
+            sudo pip install awscli --upgrade
       - run:
           name: Deployment
           command: |
             aws s3 rm s3://$BUCKET_NAME/* --recursive
             aws s3 cp docs/ s3://$BUCKET_NAME/ --recursive
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - npm_install:
+          filters:
+            branches:
+              only: master
+      - build_and_test:
+          requires:
+            - npm_install
+      - deploy:
+          requires:
+            - build_and_test
