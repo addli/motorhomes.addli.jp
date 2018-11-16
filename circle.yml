@@ -1,36 +1,20 @@
 version: 2
 jobs:
-  npm_install:
-    working_directory: ~/repo
-    docker: # requires
-      - image: circleci/node:7.10
-    steps:
-      - checkout
-      - run:
-          name: show environments
-          command: |
-            cat /etc/issue
-      - run:
-          name: Setup npm
-          command: |
-            npm install
-      - save_cache:
-          name: Saving Cache node_modules
-          key: node_modules_cache
-          paths:
-            - "./node_modules"
   build_and_test:
     working_directory: ~/repo
     docker: # requires
       - image: circleci/node:7.10
     steps:
+      - checkout
       - restore_cache:
           name: Restoring Cache node_modules
           keys:
-            - node_modules_cache
+            - node-{{ checksum "package.json" }}
+            - node-
       - run:
-          name: Setup gulp
+          name: Setup npm
           command: |
+            npm install
             sudo npm install -g gulp
             npm rebuild node-sass --force
       - run:
@@ -46,6 +30,11 @@ jobs:
           name: Unit test
           command: |
             npm run test
+      - save_cache:
+          name: Saving Cache node_modules
+          key: node-{{ checksum "package.json" }}
+          paths:
+            - "./node_modules"
       - save_cache:
           name: Saving Cache Docs
           key: docs_cache
@@ -78,11 +67,10 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - npm_install:
+      - build_and_test:
           filters:
             branches:
               only: master
-      - build_and_test:
           requires:
             - npm_install
       - deploy:
