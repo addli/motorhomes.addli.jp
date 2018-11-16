@@ -71,8 +71,6 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            - npm_install
       - deploy:
           requires:
             - build_and_test
