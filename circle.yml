@@ -16,7 +16,7 @@ jobs:
           command: |
             npm install
             sudo npm install -g gulp
-            npm rebuild node-sass --force
+            npm rebuild node-sass --force # workaround -> https://qiita.com/0084ken/items/3015fefdf10f79e3770d
       - run:
           name: Setup env file
           command: |
