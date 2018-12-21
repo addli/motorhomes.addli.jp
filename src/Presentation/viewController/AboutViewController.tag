@@ -2,17 +2,6 @@ import "./MarkedViewController.tag"
 
 <aboutviewcontroller>
 
-<div class="viewcontroller-view">
-    <div class="container">
-        <section class="widget" onclick={ onClickTermButton }>
-            { localize("About this app") }
-        </section>
-        <section class="widget" onclick={ onClickLicenseButton }>
-            { localize("Open Source Licenses") }
-        </section>
-    </div>
-</div>
-
 <script>
 import i18next from "i18next"
 
@@ -38,5 +27,16 @@ self.localize = function( key ){
 }
 
 </style>
+
+<div class="viewcontroller-view">
+    <div class="container">
+        <section class="widget" onclick={ onClickTermButton }>
+            { localize("About this app") }
+        </section>
+        <section class="widget" onclick={ onClickLicenseButton }>
+            { localize("Open Source Licenses") }
+        </section>
+    </div>
+</div>
 
 </aboutviewcontroller>

@@ -1,28 +1,5 @@
 <InfoWindowView>
 
-<!-- InfoWindow -->
-<div id="info-window-content">
-    <div class="hidden-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    { place.title }
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    { place.address }
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    { place.url }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
 var self = this
 
@@ -54,5 +31,28 @@ self.setPlace = function( place ){
     overflow : hidden;
 }
 </style>
+
+<!-- InfoWindow -->
+<div id="info-window-content">
+    <div class="hidden-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    { place.title }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    { place.address }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    { place.url }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </InfoWindowView>

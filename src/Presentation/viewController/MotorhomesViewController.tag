@@ -7,23 +7,7 @@ import "./AboutViewController.tag"
 import "../view/NavigationBar.tag"
 import "../view/TabBar.tag"
 
-<rootviewcontroller>
-
-<navigationbar />
-
-<div class="headered footered" style="width: 100%;">
-    <tabbarcontroller tabs={ [
-        { tagName : "mapviewcontroller" }, 
-        {
-          tagName : "navigationcontroller",
-          opts : {
-            root : "aboutviewcontroller" 
-          }
-        }
-    ] } />
-</div>
-
-<tabbar />
+<motorhomesviewcontroller>
 
 <script>
 import RootUseCase from "../../Domain/UseCase/RootUseCase"
@@ -101,4 +85,20 @@ this.on("mount", function(){
 })
 </script>
 
-</rootviewcontroller>
+<navigationbar />
+
+<div class="headered footered" style="width: 100%;">
+    <tabbarcontroller tabs={ [
+        { tagName : "mapviewcontroller" }, 
+        {
+          tagName : "navigationcontroller",
+          opts : {
+            root : "aboutviewcontroller" 
+          }
+        }
+    ] } />
+</div>
+
+<tabbar />
+
+</motorhomesviewcontroller>

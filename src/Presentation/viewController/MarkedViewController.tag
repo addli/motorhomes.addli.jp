@@ -1,13 +1,5 @@
 <markedviewcontroller>
 
-<div class="viewcontroller-view scrollable">
-    <div class="container">
-        <section class="widget">
-            <div id="marked-document" />
-        </section>
-    </div>
-</div>
-
 <script>
 import marked from "marked"
 import NotificationKeys from "../../Foundation/NotificationKeys"
@@ -65,5 +57,13 @@ function hideBackButton(){
 }
 
 </script>
+
+<div class="viewcontroller-view scrollable">
+    <div class="container">
+        <section class="widget">
+            <div id="marked-document" />
+        </section>
+    </div>
+</div>
 
 </markedviewcontroller>

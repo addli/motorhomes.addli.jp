@@ -1,23 +1,5 @@
 <navigationbar>
 
-<header>
-    <div class="navigation-bar">
-        <div class="left">
-            <div class="item" if={ leftBarItem } onclick={ onClickLeftBarItem }>
-                <span class={ "glyphicon " + leftBarItem.glyphicon }></span>
-            </div>
-        </div>
-        <div class="title">
-            motorhomes
-        </div>
-        <div class="right">
-            <div class="item" if={ rightBarItem } onclick={ onClickRightBarItem }>
-                <span class={ "glyphicon " + rightBarItem.glyphicon }></span>
-            </div>
-        </div>
-    </div>
-</header>
-
 <script>
 var self = this
 
@@ -47,4 +29,23 @@ self.onClickRightBarItem = function(){
 }
 
 </script>
+
+<header>
+    <div class="navigation-bar">
+        <div class="left">
+            <div class="item" if={ leftBarItem } onclick={ onClickLeftBarItem }>
+                <span class={ "glyphicon " + leftBarItem.glyphicon }></span>
+            </div>
+        </div>
+        <div class="title">
+            motorhomes
+        </div>
+        <div class="right">
+            <div class="item" if={ rightBarItem } onclick={ onClickRightBarItem }>
+                <span class={ "glyphicon " + rightBarItem.glyphicon }></span>
+            </div>
+        </div>
+    </div>
+</header>
+
 </navigationbar>

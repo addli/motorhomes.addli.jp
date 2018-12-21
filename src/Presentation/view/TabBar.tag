@@ -1,18 +1,5 @@
 <tabbar>
 
-<footer>
-    <div class="tab-bar">
-        <div class="items">
-            <virtual each={ menu,i in menus }>
-                <a href={ "#/" + menu.identifier } class={ i == activeIndex ? "active" : "" }>
-                    <span class={ "glyphicon " + menu.glyphicon }></span>
-                    <label>{ menu.title }</label>
-                </a>
-            </virtual>
-        </div>
-    </div>
-</footer>
-
 <script>
 var self = this
 
@@ -32,5 +19,18 @@ self.setActiveIndex = function( index ){
 }
 
 </script>
+
+<footer>
+    <div class="tab-bar">
+        <div class="items">
+            <virtual each={ menu,i in menus }>
+                <a href={ "#/" + menu.identifier } class={ i == activeIndex ? "active" : "" }>
+                    <span class={ "glyphicon " + menu.glyphicon }></span>
+                    <label>{ menu.title }</label>
+                </a>
+            </virtual>
+        </div>
+    </div>
+</footer>
 
 </tabbar>

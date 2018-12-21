@@ -1,10 +1,6 @@
 import "../view/InfoWindowView.tag"
 
 <mapviewcontroller>
-
-<div id="motorhome-map" />
-<infowindowview />
-
 <script>
 import { DIContainer }  from "../../Foundation/inversify.config"
 import InjectionType    from "../../Foundation/InjectionType"
@@ -76,5 +72,8 @@ function reloadPlace(){
     background-color: lightgray;
 }
 </style>
+
+<div id="motorhome-map" />
+<infowindowview />
 
 </mapviewcontroller>
