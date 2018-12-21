@@ -3,6 +3,22 @@
 var gulp   = require("gulp")
 
 // ━━━━━━━━━━━━━━━━━━━━━━
+// Linting for TypeScript
+// ━━━━━━━━━━━━━━━━━━━━━━
+var tslint   = require("gulp-tslint")
+gulp.task("tslint", function() {
+  gulp.src([
+      "./src/Foundation/**/*.ts",
+      "./src/Domain/**/*.ts",
+      "./src/Infrastructure/**/*.ts"
+  ])
+  .pipe(
+    tslint({ configuration: "./tslint.json"})
+  )
+  .pipe(tslint.report())
+})
+
+// ━━━━━━━━━━━━━━━━━━━━━━
 // Build JS/TS
 // ━━━━━━━━━━━━━━━━━━━━━━
 var exec = require('child_process').exec
@@ -62,7 +78,7 @@ gulp.task('make-settings', function() {
 // ━━━━━━━━━━━━━━━━━━━━━━
 // Default
 // ━━━━━━━━━━━━━━━━━━━━━━
-gulp.task("default", ["buildjs","styles","convert-hjson-to-json"])
+gulp.task("default", ["tslint", "buildjs", "styles", "convert-hjson-to-json"])
 
 // ━━━━━━━━━━━━━━━━━━━━━━
 // Launch test server

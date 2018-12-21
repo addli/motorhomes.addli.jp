@@ -26,7 +26,7 @@ export default class Initializer{
         })
 
         var lang = ((window.navigator.languages && window.navigator.languages[0]) ||
-            window.navigator.language).substr(0,2) == "ja" ? "ja" : "en";
+            window.navigator.language).substr(0,2) == "ja" ? "ja" : "en"
         var requestLocalizedString = fetch("assets/json/i18n/"+ lang +"/localize.json")
         .then( (res) => { return res.json() })
         .then( (json) => {
