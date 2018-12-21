@@ -7,19 +7,19 @@ import PlaceRepository from "./interface/PlaceRepository"
 import "reflect-metadata"
 
 @injectable()
-export default class PlaseImplRepository implements PlaceRepository{
+export default class PlaseImplRepository implements PlaceRepository {
 
-    public loadPlace = ( handler:(places:Place[],error?:Error) => void ) => {
+    public loadPlace = ( handler: (places: Place[], error?: Error) => void ) => {
 
         fetch("assets/json/places.json")
         .then( (response) => {
             return response.json()
         })
-        .then( (json) =>{
-            if( json instanceof Array ){
-                var places = json.map((o) => { 
-                    return new Place(o["title"],o["type"],o["postalCode"],o["address"],o["tel"],o["url"],
-                    new Location(o["location"].latitude,o["location"].longitude) )
+        .then( (json) => {
+            if ( json instanceof Array ) {
+                let places = json.map((o) => {
+                    return new Place(o.title, o.type, o.postalCode, o.address, o.tel, o.url,
+                    new Location(o.location.latitude, o.location.longitude) )
                 })
                 handler( places, undefined )
                 return

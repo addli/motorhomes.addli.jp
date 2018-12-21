@@ -1,6 +1,6 @@
-export default class ApplicationUseCase{
+export default class ApplicationUseCase {
     public initialize = ( completion: (error?: Error) => void ) => {
-        //completion( Error("これはダミーのエラーです。") )
+        // completion( Error("これはダミーのエラーです。") )
         completion( null )
-    } 
+    }
 }

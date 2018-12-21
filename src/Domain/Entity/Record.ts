@@ -1,7 +1,7 @@
-export default class Record{
-    name : string
+export default class Record {
+    public name: string
 
-    constructor( name:string ){
+    constructor( name: string ) {
         this.name = name
     }
 }

@@ -9,15 +9,19 @@ import MapRepository from "./interface/MapRepository"
 import "reflect-metadata"
 
 @injectable()
-export default class MapImplRepository implements MapRepository{
+export default class MapImplRepository implements MapRepository {
 
-    private view?:HTMLElement
-    private map?:google.maps.Map
+    private view?: HTMLElement
+    private map?: google.maps.Map
     private setting = Settings.shared().valueForKey("map")
-    private markers:google.maps.Marker[] = []
+    private markers: google.maps.Marker[] = []
 
-    public load = (handler:(view?:HTMLElement,error?:Error) => void ) => {
-        if ( this.view ){
+    private externalMarkerClickHandler?: ( marker: Location ) => void
+
+    private infoWindow?: google.maps.InfoWindow
+
+    public load = (handler: (view?: HTMLElement, error?: Error) => void ) => {
+        if ( this.view ) {
             handler( this.view, undefined )
             return
         }
@@ -32,13 +36,13 @@ export default class MapImplRepository implements MapRepository{
             jsonp   : "callback"
         })
         .done( () => { // Imported "google"
-            var view = document.createElement("div")
-            view.setAttribute("style","width:100%;height:100%")
-            this.map = new google.maps.Map( view, { 
+            let view = document.createElement("div")
+            view.setAttribute("style", "width:100%;height:100%")
+            this.map = new google.maps.Map( view, {
                 zoom: this.setting.zoom,
                 mapTypeControl: false,
                 streetViewControl: false,
-                center:new google.maps.LatLng(
+                center: new google.maps.LatLng(
                     this.setting.center.latitude,
                     this.setting.center.longitude
                  )
@@ -56,20 +60,20 @@ export default class MapImplRepository implements MapRepository{
     }
 
     public refresh = () => {
-        if( this.map ){ google.maps.event.trigger( this.map, "resize")}
+        if ( this.map ) { google.maps.event.trigger( this.map, "resize")}
     }
 
-    public setMarkers = ( locations:Location[] ) => {
+    public setMarkers = ( locations: Location[] ) => {
 
         locations.forEach( (location) => {
-            var marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
                 position: {lat: location.latitude, lng: location.longitude }
             })
             marker.addListener("click", () => {
-                if( this.externalMarkerClickHandler ){
+                if ( this.externalMarkerClickHandler ) {
                     this.externalMarkerClickHandler( location )
                 }
-                if( this.infoWindow ){
+                if ( this.infoWindow ) {
                     this.infoWindow.open( this.map, marker )
                 }
             })
@@ -79,16 +83,12 @@ export default class MapImplRepository implements MapRepository{
         })
     }
 
-    private externalMarkerClickHandler?:( marker:Location ) => void
-
-    public setMarkerClickHandler = ( hanlder:( location:Location ) => void ) => {
+    public setMarkerClickHandler = ( hanlder: ( location: Location ) => void ) => {
         this.externalMarkerClickHandler = hanlder
     }
-
-    private infoWindow?:google.maps.InfoWindow
-    public setInfoWindowContent = (content:HTMLElement) =>{
+    public setInfoWindowContent = (content: HTMLElement) => {
         content.style.display = "inherit"
-        if( this.infoWindow == null ){
+        if ( this.infoWindow == null ) {
             this.infoWindow = new google.maps.InfoWindow({
                 maxWidth: 250
             })
@@ -97,11 +97,11 @@ export default class MapImplRepository implements MapRepository{
     }
 
     public fitBounds = () => {
-        if( this.markers.length > 0 ){
-            var bounds = new google.maps.LatLngBounds();
+        if ( this.markers.length > 0 ) {
+            let bounds = new google.maps.LatLngBounds()
             this.markers.forEach(marker => {
-                bounds.extend(marker.getPosition());
-            });
+                bounds.extend(marker.getPosition())
+            })
             this.map.fitBounds(bounds)
         }
     }
