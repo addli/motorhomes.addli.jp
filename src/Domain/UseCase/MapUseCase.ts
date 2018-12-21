@@ -1,10 +1,10 @@
-import MapRepository from "../Domain/Repository/interface/MapRepository"
-import PlaceRepository from "../Domain/Repository/interface/PlaceRepository"
+import MapRepository from "../Repository/interface/MapRepository"
+import PlaceRepository from "../Repository/interface/PlaceRepository"
 
-import Place from "../Domain/Entity/Place"
-import Location from "../Domain/Entity/Location"
+import Place from "../Entity/Place"
+import Location from "../Entity/Location"
 
-export default class MapService{
+export default class MapUseCase{
 
     private mapRepo:MapRepository;
     private placeRepo:PlaceRepository;

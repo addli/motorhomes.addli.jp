@@ -10,8 +10,8 @@
 
 <script>
 import marked from "marked"
-import NotificationCenter from "../../../logic/Foundation/NotificationCenter"
-import NotificationKeys from "../../../logic/Foundation/NotificationKeys"
+import NotificationKeys from "../../Foundation/NotificationKeys"
+import NotificationCenter from "../../Infrastructure/NotificationCenter"
 
 var self = this
 

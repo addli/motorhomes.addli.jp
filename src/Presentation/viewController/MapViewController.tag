@@ -6,12 +6,12 @@ import "../view/InfoWindowView.tag"
 <infowindowview />
 
 <script>
-import { DIContainer }  from "../../logic/Foundation/inversify.config"
-import InjectionType    from "../../logic/Foundation/InjectionType"
-import MapService       from "../../logic/Service/MapService"
+import { DIContainer }  from "../../Foundation/inversify.config"
+import InjectionType    from "../../Foundation/InjectionType"
+import MapUseCase       from "../../Domain/UseCase/MapUseCase"
 
 var self = this
-var service = new MapService( 
+var useCase = new MapUseCase( 
     DIContainer.get(InjectionType.MapRepository),
     DIContainer.get(InjectionType.PlaceRepository),
  );
@@ -30,7 +30,7 @@ self.onClickTabButton = function(){
 // tabbar controller lifecycle
 // ──────────────────
 self.didSelect = function(){
-    if( !service.isLoaded() ){
+    if( !useCase.isLoaded() ){
         self.loadMap()
     }
 }
@@ -38,32 +38,32 @@ self.didSelect = function(){
 // private functions
 // ──────────────────
 self.loadMap = function(){
-    service.load( function(view,error){
+    useCase.load( function(view,error){
         if(error){ 
             console.log( "error=" + error.message )
             return
         }
         // Display map on view
         document.getElementById("motorhome-map").appendChild(view)
-        service.setInfoWindowContent( self.tags.infowindowview.domContent() )
+        useCase.setInfoWindowContent( self.tags.infowindowview.domContent() )
         reloadPlace()
     })
 }
 
 function reloadPlace(){
-    service.loadPlace( function( places,error ){
+    useCase.loadPlace( function( places,error ){
         if(error){ 
             console.log( "error=" + error.message )
             return
         }
 
         // Put place of motorhome builder on map.
-        service.putPlaces( places )
-        service.setMarkerClickHandler( function( place ){
+        useCase.putPlaces( places )
+        useCase.setMarkerClickHandler( function( place ){
             self.tags.infowindowview.setPlace( place )
         })
          
-        service.fitBounds()
+        useCase.fitBounds()
     })
 }
 

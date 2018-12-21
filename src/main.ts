@@ -1,6 +1,6 @@
 // Polyfill
 import "fetch-polyfill"
 
-import Initializer from "./logic/Foundation/Initializer"
+import Initializer from "./Foundation/Initializer"
 var initializer = new Initializer()
 initializer.initialize()

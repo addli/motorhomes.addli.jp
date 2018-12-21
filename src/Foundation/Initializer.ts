@@ -2,11 +2,11 @@ import riot from "riot"
 import i18next from "i18next"
 import moment from "moment"
 
-import Settings from "./Settings"    
-import Analytics from "./Analytics"
+import Settings from "../Infrastructure/Settings"    
+import Analytics from "../Infrastructure/Analytics"
 
 // import riot tags
-import "../../views/application.tag"
+import "../Presentation/application.tag"
 
 export default class Initializer{
 

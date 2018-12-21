@@ -1,5 +1,5 @@
 import $ from "jquery"
-import Settings from "../../Foundation/Settings"
+import Settings from "../../Infrastructure/Settings"
 
 import Place from "../Entity/Place"
 import Location from "../Entity/Location"

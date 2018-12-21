@@ -1,5 +1,6 @@
 import "riot-tab/dist/TabBarController.tag"
 import "riot-nav/dist/NavigationController.tag"
+
 import "./MapViewController.tag"
 import "./AboutViewController.tag"
 
@@ -25,12 +26,12 @@ import "../view/TabBar.tag"
 <tabbar />
 
 <script>
-import RootService from "../../logic/Service/RootService"
+import RootUseCase from "../../Domain/UseCase/RootUseCase"
 import route from "riot-route"
 import i18next from "i18next"
 
 var self = this
-var service = new RootService()
+var useCase = new RootUseCase()
 
 // riot lifecycle
 // ──────────────────
@@ -52,7 +53,7 @@ this.on("mount", function(){
     ]
 
     // set notification handler
-    service.setNavigationBarLeftButtonSettingHanlder( function( item ){
+    useCase.setNavigationBarLeftButtonSettingHanlder( function( item ){
         self.tags.navigationbar.setLeftBarItem( item )
     })
 

@@ -1,4 +1,4 @@
-import "./about/MarkedViewController.tag"
+import "./MarkedViewController.tag"
 
 <aboutviewcontroller>
 
