@@ -1,4 +1,4 @@
-import "./viewController/MotorhomesViewController.tag"
+import "./viewController/TopViewController.tag"
 import "./viewController/ErrorViewController.tag"
 
 <application>
@@ -15,7 +15,7 @@ this.on('mount', function() {
             riot.mount( "rootviewcontroller", "errorviewcontroller", { "error": error })
             return
         }
-        riot.mount( "rootviewcontroller", "motorhomesviewcontroller" )
+        riot.mount( "rootviewcontroller", "topviewcontroller" )
     })
 })
 </script>

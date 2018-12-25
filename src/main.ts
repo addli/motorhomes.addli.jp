@@ -1,6 +1,11 @@
-// Polyfill
+// Import Polyfill
 import "fetch-polyfill"
 
-import Initializer from "./Foundation/Initializer"
-var initializer = new Initializer()
-initializer.initialize()
+// Import Framework
+import riot from "riot"
+
+// Import application with riot
+import "./Presentation/application.tag"
+
+// Start Application
+riot.mount("application")

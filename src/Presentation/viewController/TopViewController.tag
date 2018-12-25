@@ -7,15 +7,15 @@ import "./AboutViewController.tag"
 import "../view/NavigationBar.tag"
 import "../view/TabBar.tag"
 
-<motorhomesviewcontroller>
+<topviewcontroller>
 
 <script>
-import RootUseCase from "../../Domain/UseCase/RootUseCase"
+import TopUseCase from "../../Domain/UseCase/TopUseCase"
 import route from "riot-route"
 import i18next from "i18next"
 
 var self = this
-var useCase = new RootUseCase()
+var useCase = new TopUseCase()
 
 // riot lifecycle
 // ──────────────────
@@ -101,4 +101,4 @@ this.on("mount", function(){
 
 <tabbar />
 
-</motorhomesviewcontroller>
+</topviewcontroller>

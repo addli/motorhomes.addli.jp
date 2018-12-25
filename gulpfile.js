@@ -8,9 +8,7 @@ var gulp   = require("gulp")
 var tslint   = require("gulp-tslint")
 gulp.task("tslint", function() {
   gulp.src([
-      "./src/Foundation/**/*.ts",
-      "./src/Domain/**/*.ts",
-      "./src/Infrastructure/**/*.ts"
+      "./src/**/*.ts"
   ])
   .pipe(
     tslint({
