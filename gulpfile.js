@@ -7,7 +7,7 @@ var gulp   = require("gulp")
 // ━━━━━━━━━━━━━━━━━━━━━━
 var tslint   = require("gulp-tslint")
 gulp.task("tslint", function() {
-  gulp.src([
+  return gulp.src([
       "./src/**/*.ts",
       "./test/**/*.ts"
   ])
@@ -26,7 +26,7 @@ gulp.task("tslint", function() {
 var exec = require('child_process').exec
 
 gulp.task('buildjs', function (cb) {
-  exec('npm run build', function (err, stdout, stderr) {
+  exec('npm run rollup', function (err, stdout, stderr) {
     console.log(stdout)
     console.log(stderr)
     cb(err)
@@ -56,7 +56,7 @@ gulp.task('styles', function () {
 // ━━━━━━━━━━━━━━━━━━━━━━
 var Hjson = require('gulp-hjson')
  
-gulp.task('convert-hjson-to-json', ['make-settings'], function() {
+gulp.task('convert-hjson-to-json', function() {
   return gulp.src(['./hjson/**/*'])
     .pipe(Hjson({ to: 'json' }))
     .pipe(gulp.dest('./docs/assets/json/'))
@@ -80,7 +80,14 @@ gulp.task('make-settings', function() {
 // ━━━━━━━━━━━━━━━━━━━━━━
 // Default
 // ━━━━━━━━━━━━━━━━━━━━━━
-gulp.task("default", ["tslint", "buildjs", "styles", "convert-hjson-to-json"])
+gulp.task("default",
+  gulp.series(
+    'make-settings',
+    "convert-hjson-to-json",
+    "tslint",
+    gulp.parallel("buildjs", "styles")
+  )
+)
 
 // ━━━━━━━━━━━━━━━━━━━━━━
 // Launch test server

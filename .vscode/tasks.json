@@ -20,7 +20,7 @@
     "tasks": [
         {
             "taskName"      : "build",
-            "args"          : ["gulp"],
+            "args"          : ["npm run build"],
             "isBuildCommand": true,
             "isBackground"  : false,
             "problemMatcher": [
