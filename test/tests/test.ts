@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { DIContainer } from "../inversify.config"
 
-import MapService from "../../src/logic//Service/MapService"
-import InjectionType    from "../../src/logic/Foundation/InjectionType"
+import MapService from "../../src/Domain/UseCase/MapUseCase"
+import InjectionType    from "../../src/Foundation/InjectionType"
 
 describe('MapService', () => {
     it('isLoaded return true', () => {

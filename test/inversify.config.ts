@@ -1,6 +1,6 @@
 import { Container } from "inversify";
 
-import InjectionType from "../src/logic/Foundation/InjectionType"
+import InjectionType from "../src/Foundation/InjectionType"
 
 import MapStubRepository from "./stub/MapStubRepository"
 import PlaceStubRepository from "./stub/PlaceStubRepository"

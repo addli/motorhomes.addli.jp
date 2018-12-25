@@ -1,7 +1,7 @@
-import Place from "../../src/logic/Domain/Entity/Place"
+import Place from "../../src/Domain/Entity/Place"
 
 import { injectable } from "inversify"
-import PlaceRepository from "../../src/logic/Domain/Repository/interface/PlaceRepository"
+import PlaceRepository from "../../src/Domain/Repository/interface/PlaceRepository"
 import "reflect-metadata"
 
 @injectable()

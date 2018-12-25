@@ -1,7 +1,7 @@
-import Location from "../../src/logic/Domain/Entity/Location"
+import Location from "../../src/Domain/Entity/Location"
 
 import { injectable } from "inversify"
-import MapRepository from "../../src/logic/Domain/Repository/interface/MapRepository"
+import MapRepository from "../../src/Domain/Repository/interface/MapRepository"
 import "reflect-metadata"
 
 @injectable()

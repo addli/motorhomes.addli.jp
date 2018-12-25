@@ -51,10 +51,11 @@ export default class ApplicationUseCase {
             // Start Analytics
             Analytics.shared().start( Settings.shared().valueForKey("analytics").trackingID )
             Analytics.shared().send("pageview")
-            // Start Application
+            // No error
             completion(null)
         })
         .catch((error) => {
+            // Has error
             completion(error)
         })
     }
