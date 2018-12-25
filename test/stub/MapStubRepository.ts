@@ -5,27 +5,27 @@ import MapRepository from "../../src/Domain/Repository/interface/MapRepository"
 import "reflect-metadata"
 
 @injectable()
-export default class MapStubRepository implements MapRepository{
+export default class MapStubRepository implements MapRepository {
 
-    load = (handler:(view:HTMLElement,error?:Error) => void ) => {
+    public load = (handler: (view: HTMLElement, error?: Error) => void ) => {
 
     }
-    isLoaded = () => {
+    public isLoaded = () => {
         return true
     }
-    refresh = () => {
+    public refresh = () => {
 
     }
-    setMarkers = ( locations:Location[] ) => {
+    public setMarkers = ( locations: Location[] ) => {
 
     }
-    setMarkerClickHandler = ( hanlder:( location:Location ) => void ) => {
+    public setMarkerClickHandler = ( hanlder: ( location: Location ) => void ) => {
 
     }
-    setInfoWindowContent = (content:HTMLElement) => {
+    public setInfoWindowContent = (content: HTMLElement) => {
 
     }
-    fitBounds = () => {
+    public fitBounds = () => {
 
     }
 }

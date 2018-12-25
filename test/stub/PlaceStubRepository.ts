@@ -5,6 +5,6 @@ import PlaceRepository from "../../src/Domain/Repository/interface/PlaceReposito
 import "reflect-metadata"
 
 @injectable()
-export default class PlaceStubRepository implements PlaceRepository{
-    loadPlace : ( handler:(places:Place[],error?:Error) => void ) => void
+export default class PlaceStubRepository implements PlaceRepository {
+    public loadPlace: ( handler: (places: Place[], error?: Error) => void ) => void
 }
